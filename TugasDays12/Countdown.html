@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CountDown Timer</h1>
+    <input type="number" placeholder="Masukan detik" id="Masukan">
+    <button onclick="StartCountdown()">START COUNTDOWN</button>
+    <h2 id="Keluaran"></h2>
+</body>
+<script>
+    let inputmentah = document.getElementById("Masukan")
+    let output = document.getElementById("Keluaran")
+    function StartCountdown() {
+        input = parseInt(inputmentah.value) + 1
+        if (isNaN(input) === true) {
+            x = 1
+        } else {
+            x = input
+        }
+        
+        let interval = setInterval(() => {
+            x--
+            output.innerHTML = `${x}`
+            if (x === 0) {
+                output.innerHTML = `Time Up`
+                clearInterval(interval)
+            }
+                
+        }, 1000)
+    }
+</script>
+</html>

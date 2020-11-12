@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    
+    <body>
+        
+    </body>
+    <script>
+        // index 0 = Apple
+        // index 1 jeruk
+        // index 2 = anggur
+        
+        let produk = ["Apple 🍎", "Orange 🍊 ", "Grape 🍇"]
+        let harga = [10000, 5000, 15000]
+        let stock = [50, 30, 40]
+        
+        function MenuAwal() {
+            let menu = "Selamat Datang \n"
+            for (let a = 0; a < produk.length; a++) {
+                menu += `${produk[a]} : Rp.${harga[a]} 
+                Stock : ${stock[a]} \n `
+            }
+            alert(menu)
+        }
+        
+        let buah = []
+        
+        function InputBuah() {
+            let x = []
+            for (a = 0; a < produk.length; a++) {
+                while (true) {
+                    x[a] = parseInt(prompt(`Butuh berapa ${produk[a]}`))
+                    if (x[a] > stock[a]) {
+                        alert('out of stock')
+                        buah[a] = 0
+                    } else if (isNaN(x[a])) {
+                        alert('wrong input')
+                        buah[a] = 0
+                    } else {
+                        buah[a] = x[a]
+                        break
+                    }
+                    
+                }
+            }
+        }
+
+
+
+    main: while (true) {
+
+        MenuAwal()
+        //input buah
+        InputBuah()
+        //output Detail belanja
+        let totalhargabuah = []
+        let hargatotalbuah = []
+
+        function TotalHargaBuah() {
+            for (a = 0; a < produk.length; a++) {
+                totalhargabuah.push(buah[a] * harga[a])
+            }
+            hargatotalbuah.push(totalhargabuah.reduce((a, b) => a + b))
+        }
+
+        function DetailBelanja() {
+            let TulisanDetailBelanja = 'Detail Belanja \n'
+            for (a = 0; a < produk.length; a++) {
+                TulisanDetailBelanja += `Total Harga ${produk[a]} = ${totalhargabuah[a]} \n`
+            }
+            TulisanDetailBelanja += `Total Semua : ${hargatotalbuah}`
+            alert(TulisanDetailBelanja)
+        }
+        TotalHargaBuah()
+        DetailBelanja()
+
+
+        let pembayaran
+        while (true) {
+            pembayaran = parseInt(prompt('masukan Nominalnya'))
+
+            if (pembayaran < hargatotalbuah) {
+                alert('pembayaran tidak dapat di lanjutkan dikarenakan nominalnya kurang')
+            } else if (isNaN(pembayaran)) {
+                alert('anda belum memasukan nominalnya')
+            } else if (pembayaran > hargatotalbuah) {
+                let kembalian = pembayaran - hargatotalbuah
+                alert(`ini kembaliannya ${kembalian}`)
+                break
+            } else {
+                break
+            }
+
+        }
+        //Penguraangan stock
+        function KurangStock() {
+            let stockakhirbuah = [stock[0] - buah[0], stock[1] - buah[1], stock[2] - buah[2]]
+            stock = stockakhirbuah
+        }
+        KurangStock()
+
+        //minta user confirmation
+        let confirmation = confirm('apakah anda ingin belanja lagi')
+        if (confirmation === false) {
+            break main
+        }
+
+    }
+</script>
+
+</html>

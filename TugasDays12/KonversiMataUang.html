@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Mata Uang</title>
+</head>
+<style>
+    body {
+        background-color: #fa983a ;
+    }
+    h1 {
+        text-align: center;
+        margin-left: 5cm;
+        margin-right: 5cm;
+    }
+
+    input {
+        background-color: #60a3bc ;
+        color: white;
+        margin-left: 18cm;
+        margin-right: 18cm;
+    }
+    select {
+        background-color: #05c46b;
+        color: white;;
+        margin-left: 19.5cm;
+        margin-right: 20cm;
+    }
+    h3 {
+        text-align: center;
+    }
+    button {
+        margin-top: 1cm;
+        margin-left: 19.5cm;
+        margin-right: 20cm;
+    }
+    p {
+        text-align: center;
+        color: #d63031;
+        font-size: 32px;
+    }
+</style>
+
+<body>
+    <h1>Masukan Nominal Uang Anda</h1>
+    <input type="number" id="x1">
+    <br>
+    <h3>from</h3>
+    <select name="mata_uang_bef" id="s1">
+        <option value="1">IDR</option>
+        <option value="2">USD</option>
+        <option value="3">KRW</option>
+    </select>
+    <br>
+    <h3>to</h3>
+    <select name="mata_uang_aft" id="s2">
+        <option value="4">IDR</option>
+        <option value="5">USD</option>
+        <option value="6">KRW</option>
+    </select>
+    <br>
+    <button onclick="Konversikan()">Convert</button>
+    <p id="px">
+
+    </p>
+
+</body>
+<script>
+    let select1 = document.getElementById("s1")
+    let select2 = document.getElementById("s2")
+    let pmenentah = document.getElementById("px")
+    function Konversikan() {
+        let hasil
+        let input = document.getElementById("x1")
+        if (select1[0].selected) {
+            if (select2[0].selected) {
+                hasil = parseInt(input.value)
+                pmenentah.textContent = `Konversi IDR to IDR = ${hasil} Rupiah`
+            } else if (select2[1].selected) {
+                hasil = parseInt(input.value) / 15000
+                pmenentah.textContent = `Konversi IDR to USD = ${hasil} Dollar`
+            } else if (select2[2].selected) {
+                hasil = parseInt(input.value) / 10
+                pmenentah.textContent = `Konversi IDR to KRW = ${hasil} Won`
+            }
+        } else if (select1[1].selected) {
+            if (select2[0].selected) {
+                hasil = parseInt(input.value) * 10000
+                pmenentah.textContent = `Konversi USD to IDR = ${hasil} Rupiah`
+            } else if (select2[1].selected) {
+                hasil = parseInt(input.value)
+                pmenentah.textContent = `Konversi USD to USD = ${hasil} Dollar`
+            } else if (select2[2].selected) {
+                hasil = parseInt(input.value) * 1000
+                pmenentah.textContent = `Konversi USD to KRW = ${hasil} Won`
+            }
+        } else if (select1[2].selected) {
+            if (select2[0].selected) {
+                hasil = parseInt(input.value) * 10
+                pmenentah.textContent = `Konversi KRW to IDR = ${hasil} Rupiah`
+            } else if (select2[1].selected) {
+                hasil = parseInt(input.value) / 1000
+                pmenentah.textContent = `Konversi KRW to USD = ${hasil} Dollar`
+            } else if (select2[2].selected) {
+                hasil = parseInt(input.value)
+                pmenentah.textContent = `Konversi KRW to KRW = ${hasil} Won`
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal</title>
+</head>
+
+<body>
+    <div>
+        <h4>1. Siapakah Presiden Ketiga Republik Indonesia?</h4>
+        <input type="radio" name="pilihan1" id="a1">Prof.B.J.Habibie
+        <input type="radio" name="pilihan1" id="b1">Abdurahman Wahid
+        <input type="radio" name="pilihan1" id="c1">Ir.Soekarno
+        <input type="radio" name="pilihan1" id="d1">Joko Widodo
+    </div>
+    <div>
+        <h4>2. Berikut adalah nama-nama bahasa pemrograman, kecuali ...</h4>
+        <input type="radio" name="pilihan2" id="a2">Phyton
+        <input type="radio" name="pilihan2" id="b2">Micro:bit
+        <input type="radio" name="pilihan2" id="c2">Javascript
+        <input type="radio" name="pilihan2" id="d2">HTML
+    </div>
+    <div>
+        <h4>3. Apa judul lagu yang diduga plagiat oleh lagu 'sayang' Via Vallen?</h4>
+        <input type="radio" name="pilihan3" id="a3">Qing Fei De Yi
+        <input type="radio" name="pilihan3" id="b3">Ting Hai
+        <input type="radio" name="pilihan3" id="c3">Mirai E Kiroro
+        <input type="radio" name="pilihan3" id="d3">Ham Siang Hau Siang
+    </div>
+    <div>
+        <h4>4. Siapakah sosok di balik topeng Batman?</h4>
+        <input type="radio" name="pilihan4" id="a4">Natasha Romanov
+        <input type="radio" name="pilihan4" id="b4">Peter Parker
+        <input type="radio" name="pilihan4" id="c4">Tony Stark
+        <input type="radio" name="pilihan4" id="d4">Bruce Wayne
+    </div>
+    <br>
+    <button onclick="SubmitJawaban()">S U B M I T</button>
+
+</body>
+<script>
+    let inputJawaban = document.body.getElementsByTagName("input")
+    console.log(inputJawaban)
+    function SubmitJawaban() {
+        if (inputJawaban[0].checked) {
+            pilihanjawaban1 = 1
+        } else if (inputJawaban[1].checked) {
+            pilihanjawaban1 = 2
+        } else if (inputJawaban[2].checked) {
+            pilihanjawaban1 = 3
+        } else if (inputJawaban[3].checked) {
+            pilihanjawaban1 = 4
+        }
+        let pilihanjawaban2
+        if (inputJawaban[4].checked) {
+            pilihanjawaban2 = 5
+        } else if (inputJawaban[5].checked) {
+            pilihanjawaban2 = 6
+        } else if (inputJawaban[6].checked) {
+            pilihanjawaban2 = 7
+        } else if (inputJawaban[7].checked) {
+            pilihanjawaban2 = 8
+        }
+        let pilihanjawaban3
+        if (inputJawaban[8].checked) {
+            pilihanjawaban3 = 9
+        } else if (inputJawaban[9].checked) {
+            pilihanjawaban3 = 10
+        } else if (inputJawaban[10].checked) {
+            pilihanjawaban3 = 11
+        } else if (inputJawaban[11].checked) {
+            pilihanjawaban3 = 12
+        }
+        let pilihanjawaban4
+        if (inputJawaban[12].checked) {
+            pilihanjawaban4 = 13
+        } else if (inputJawaban[13].checked) {
+            pilihanjawaban4 = 14
+        } else if (inputJawaban[14].checked) {
+            pilihanjawaban4 = 15
+        } else if (inputJawaban[15].checked) {
+            pilihanjawaban4 = 16
+        }
+        let nilai = 0
+        let nilaisalah = 0
+        let jawaban1 = 1
+        let jawaban2 = 6
+        let jawaban3 = 11
+        let jawaban4 = 16
+        if (jawaban1 === pilihanjawaban1) {
+            nilai+=25
+        } else if(jawaban1 !== pilihanjawaban1){
+            nilaisalah+=25
+        }
+        if (jawaban2 === pilihanjawaban2) {
+            nilai+=25
+        } else if(jawaban2 !== pilihanjawaban2){
+            nilaisalah+=25
+        }
+        if (jawaban3 === pilihanjawaban3) {
+            nilai+=25
+        } else if(jawaban3 !== pilihanjawaban3){
+            nilaisalah+=25
+        }
+        if (jawaban4 === pilihanjawaban4) {
+            nilai+=25
+        } else if(jawaban4 !== pilihanjawaban4){
+            nilaisalah+=25
+        }
+        document.body.innerHTML = `
+        <h1>Nilai Anda ${nilai}</h1>
+        `
+        
+    }
+</script>
+
+</html>

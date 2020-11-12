@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //harga awal
+    let hargaApple = 10000
+    let hargaJeruk = 5000
+    let hargaAnggur = 15000
+    //Stock
+    let stockApple = 30
+    let stockJeruk = 20
+    let stockAnggur = 10
+    //input buah
+    let apple = Number(prompt("Butuh berapa apple ?"))
+    let jeruk = Number(prompt("Butuh berapa jeruk ?"))
+    let anggur = Number(prompt("Butuh berapa anggur ?"))
+    //output out of stock
+    if (apple >= stockApple || !apple) {
+        alert('out of stock')
+        apple = 0
+    } else { apple }
+    if (jeruk >= stockJeruk || !jeruk) {
+        alert('out of stock')
+        jeruk = 0
+    } else { jeruk }
+    if (anggur >= stockAnggur || !anggur) {
+        alert('out of stock')
+        anggur = 0
+    } else { anggur }
+    let hargatotalapple = hargaApple * apple
+    let hargatotaljeruk = hargaJeruk * jeruk
+    let hargatotalanggur = hargaAnggur * anggur
+    let totalhargabuah = hargatotalapple + hargatotaljeruk + hargatotalanggur
+    //outputnya 
+    alert(` Total Harga Apple : ${hargatotalapple} \n Total Harga Jeruk : ${hargatotaljeruk} \n Total Harga Anggur : ${hargatotalanggur} \n
+Total nya : ${totalhargabuah} `)
+
+
+//total harga                       
+
+
+</script>
+
+</html>

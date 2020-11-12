@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+
+    </style>
+
+    <body>
+        <label for="MasukanAngka1"> Masukan Angka 1</label>
+        <input type="number" name="MasukanAngka1" placeholder="masukan angka" id="inputx1">
+        <br>
+        <label for="MasukanAngka2">Masukan Angka 2</label>
+        <input type="number" name="MasukanAngka2" placeholder="masukan angka" id="inputx2">
+        <br>
+        <button onclick="kali()">Kali ✖</button>
+        <button onclick="bagi()">Bagi :</button>
+        <button onclick="tambah()">Tambah ➕</button>
+        <button onclick="kurang()">Kurang ➖</button>
+        <button onclick="modulus()">Modulus %</button>
+        <button onclick="pangkat()">Pangkat ^</button>
+        <br>
+    </body>
+    <script>
+        let input1 = document.getElementById("inputx1")
+        let input2 = document.getElementById("inputx2")
+
+        let hasil = document.createElement("p")
+        hasil.textContent = `hasil =`
+        document.body.append(hasil)
+
+        function kali() {
+            let hasilkali = parseInt(input1.value) * parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasilkali}`
+        }
+        function bagi() {
+            let hasilbagi = parseInt(input1.value) / parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasilbagi}`
+        }
+        function tambah() {
+            let hasiltambah = parseInt(input1.value) + parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasiltambah}`
+        }
+        function kurang() {
+            let hasilkurang = parseInt(input1.value) - parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasilkurang}`
+        }
+        function modulus() {
+            let hasilmodulus = parseInt(input1.value) % parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasilmodulus}`
+        }
+        function pangkat() {
+            let hasilpangkat = parseInt(input1.value) ** parseInt(input2.value)
+            hasil.textContent = `hasil = ${hasilpangkat}`
+        }
+    </script>
+
+</html>

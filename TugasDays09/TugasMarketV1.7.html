@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Product = [
+            {
+                nama: "Apple 🍎",
+                harga: 10000,
+                stock: 50
+            },
+            {
+                nama: "Jeruk 🍊",
+                harga: 15000,
+                stock: 45
+            },
+            {
+                nama: "Anggur 🍇",
+                harga: 20000,
+                stock: 30
+            }
+        ]
+
+        function ShowProducts() {
+            let menuShowProduct = "Selamat Datang \n"
+
+            for (a = 0; a < Product.length; a++) {
+                menuShowProduct += `
+                ${a + 1}. ${Product[a].nama}
+                    Harga : ${Product[a].harga}
+                    Stock : ${Product[a].stock}
+                `
+            }
+            alert(menuShowProduct)
+        }
+
+        let buah = []
+
+        function InputBuah() {
+            let x = []
+            for (a = 0; a < Product.length; a++) {
+                while (true) {
+                    x[a] = parseInt(prompt(`Butuh berapa ${Product[a].nama}`))
+                    if (x[a] > Product[a].nama) {
+                        alert('out of stock')
+                        buah[a] = 0
+                    } else if (isNaN(x[a])) {
+                        alert('wrong input')
+                        buah[a] = 0
+                    } else {
+                        buah[a] = x[a]
+                        break
+                    }
+
+                }
+            }
+        }
+        function NambahProduk() {
+            let TambahProduct = [{
+                nama: "",
+                harga: "",
+                stock: ""
+            }]
+            while (true) {
+                TambahProduct[0].nama = prompt('masukan nama produk')
+                if (TambahProduct[0].nama == "") {
+                    alert('tolong dimasukan ulang')
+                } else {
+                    break
+                }
+            }
+            while (true) {
+                TambahProduct[0].harga = parseInt(prompt('masukan harga yang diinginkan'))
+                if (isNaN(TambahProduct[0].harga)) {
+                    alert('tolong masukan ulang krn input salah')
+                } else if (TambahProduct[0].harga === 0) {
+                    alert('tolong masukan ulang krn anda memasukan harga 0')
+                } else {
+                    break
+                }
+            }
+            while (true) {
+                TambahProduct[0].stock = parseInt(prompt('masukan stock yang di punya'))
+                if (isNaN(TambahProduct[0].stock)) {
+                    alert('tolong masukan ulang krn input salah')
+                } else if (TambahProduct[0].stock === 0) {
+                    alert('tolong masukan ulang krn anda memasukan harga 0')
+                } else {
+                    break
+                }
+            }
+
+            Product.push(TambahProduct[0])
+            console.log(Product)
+            console.log(TambahProduct[0])
+        }
+
+
+        function editBuah() {
+            editProduct: while (true) {
+
+                let inputEdit = [{
+                    nama: '',
+                    harga: 0,
+                    stock: 0
+                }]
+                function loopEdit() {
+                    let editBuahh = (`Masukan angka urutan buah yang ingin di edit\n`)
+                    for (let x = 0; x < Product.length; x++) {
+                        editBuahh += `${x + 1}. ${Product[x].nama}\n`
+
+                    }
+                    let editBuah2 = parseInt((prompt(editBuahh)))
+
+
+
+                    return editBuah2
+                }
+
+
+                let p = loopEdit()
+                if (isNaN(p) || p > Product.length) {
+                    alert('Gagal menambah Product !!')
+                } else {
+                    let pFix = p - 1
+                    let ditbuah = prompt('Masukan nama Product baru')
+                    if (ditbuah == "") {
+                        alert('Product tidak berhasil ditambahkan !')
+                        break editProduct
+                    } else {
+                        inputEdit[0].nama = ditbuah
+                    }
+                    let editharga = parseInt(prompt(`Masukan harga Product/Kg`))
+                    if (isNaN(editharga) || editharga === 0) {
+                        alert('Product tidak berhasil diedit !')
+                        break editProduct
+                    } else {
+                        inputEdit[0].harga = editharga
+                    }
+                    let editstock = parseInt(prompt(`Masukan total stock Product`))
+                    if (isNaN(editstock) || editstock === 0) {
+                        alert('Product tidak berhasil diedit !')
+                        break editProduct
+                    } else {
+                        inputEdit[0].stock = editstock
+                    }
+                    let confrem = confirm(`
+            Apakah anda yakin ingin mengubah :
+            Buah : ${Product[pFix].nama}
+            Harga : Rp.${Product[pFix].harga}
+            Stock : ${Product[pFix].stock} Kg
+            Menjadi =>
+            Buah : ${inputEdit[0].nama}
+            Harga : Rp.${inputEdit[0].harga}
+            Stock : ${inputEdit[0].stock} Kg`)
+
+
+                    if (confrem == true) {
+                        alert(`Buah berhasil diubah!!`)
+                        Product[pFix] = { ...inputEdit[0] }
+                        break editProduct
+                    } else {
+                        alert('Product tidak berhasil diubah !')
+                        break editProduct
+                    }
+                }
+
+
+
+            }
+        }
+
+
+        while (true) {
+
+            let AngkaMenu = parseInt(prompt(`
+            Pilih Menu :
+            1. Add New Product
+            2. Show All Product
+            3. Edit Product
+            4. Buy a Product
+            `))
+
+
+            if (AngkaMenu === 1) {
+                NambahProduk()
+            } else if (AngkaMenu === 2) {
+                ShowProducts()
+            } else if (AngkaMenu === 3) {
+                editBuah()
+            } else if (AngkaMenu === 4) {
+                while (true) {
+                    ShowProducts()
+                    InputBuah()
+                    //output Detail belanja
+                    let totalhargabuah = []
+                    let hargatotalbuah = []
+
+                    function TotalHargaBuah() {
+                        for (a = 0; a < Product.length; a++) {
+                            totalhargabuah.push(buah[a] * Product[a].harga)
+                        }
+                        hargatotalbuah.push(totalhargabuah.reduce((a, b) => a + b))
+                    }
+
+                    function DetailBelanja() {
+                        let TulisanDetailBelanja = 'Detail Belanja \n'
+                        for (a = 0; a < Product.length; a++) {
+                            TulisanDetailBelanja += `Total Harga ${Product[a].nama} = ${totalhargabuah[a]} \n`
+                        }
+                        TulisanDetailBelanja += `Total Semua : ${hargatotalbuah}`
+                        alert(TulisanDetailBelanja)
+                    }
+                    TotalHargaBuah()
+                    DetailBelanja()
+
+
+                    let pembayaran
+                    while (true) {
+                        pembayaran = parseInt(prompt('masukan Nominalnya'))
+
+                        if (pembayaran < hargatotalbuah) {
+                            alert('pembayaran tidak dapat di lanjutkan dikarenakan nominalnya kurang')
+                        } else if (isNaN(pembayaran)) {
+                            alert('anda belum memasukan nominalnya')
+                        } else if (pembayaran > hargatotalbuah) {
+                            let kembalian = pembayaran - hargatotalbuah
+                            alert(`ini kembaliannya ${kembalian}`)
+                            break
+                        } else {
+                            break
+                        }
+
+                    }
+                    //Penguraangan stock
+                    function KurangStock() {
+                        for (let a = 0; a < Product.length; a++) {
+                            Product[a].stock -= buah[a]
+                        }
+                    }
+                    KurangStock()
+
+                    //minta user confirmation
+                    let confirmation = confirm('apakah anda ingin belanja lagi')
+                    if (confirmation === false) {
+                        break
+                    }
+                }
+
+            }
+            let confirmation2 = confirm(`apakah anda ingin ke menu utama?`)
+            if (confirmation2 === false) {
+                break
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body></body>
+<script>
+    let a = ["desember", "januari", "febuari"]
+    let b = ["maret", "april", "mei"]
+    let c = ["juni", "juli", "agustus"]
+    let d = ["september", "oktober", "november"]
+
+    let i = prompt('masukan bulan')
+    //while (i) {
+        switch (true) {
+            case (i === a[0] || i === a[1] || i === a[2]):
+                alert('dingin')
+                break;
+            case (i === b[0] || i === b[1] || i === b[2]):
+                alert('semi')
+                break
+            case (i === c[0] || i === c[1] || i === c[3]):
+                alert('panas')
+                break
+            case (i === d[0] || i === d[1] || i === d[2]):
+                alert('gugur')
+                break
+            default:
+                alert('eror')
+                break;
+        }
+    //}
+
+</script>
+
+</html>

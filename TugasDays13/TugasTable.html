@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TABLE</title>
+        <style>
+            table, tr, td, th {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+            }
+
+            td {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Form Produk Baru</h1>
+        <form id="produk-baru">
+            <input type="text" id="nama" placeholder="nama produk">
+            <input type="text" id="img" placeholder="image">
+            <input type="number" id="harga" placeholder="harga">
+            <input type="number" id="stok" placeholder="stok">
+            <button onclick="OnButtonAdd(event)">ADD</button>
+        </form>
+
+        <h1>Daftar Produk</h1>
+        <table id="daftar-produk">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Image</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h1>User Cart</h1>
+        <table id="cart">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Image</th>
+                    <th>Harga</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+    <script>
+        // create database
+        let dataProduk = [
+            { 
+                id : 1,
+                name : "iPhone 12",
+                img : "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-r1.jpg",
+                harga : 23000000,
+                stok : 12
+            },
+            {
+                id : 2,
+                name : "Samsung Galaxy Note 20",
+                img : "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-note20-1.jpg",
+                harga : 22500000,
+                stok : 20
+            },
+            {
+                id : 3,
+                name : "Google Pixel 5 5G",
+                img : "https://fdn2.gsmarena.com/vv/pics/google/google-pixel-5-5g-1.jpg",
+                harga : 8960000,
+                stok : 5
+            },
+            {
+                id : 4,
+                name : "OnePlus 8T",
+                img : "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-8t-1.jpg",
+                harga : 6578000,
+                stok : 8
+            }
+        ]
+
+        // class untuk bikin object produk
+        class Produk {
+            constructor(id, name, img, harga, stok) {
+                this.id = id,
+                this.name = name,
+                this.img = img,
+                this.harga = harga, 
+                this.stok = stok
+            }
+        }
+
+        // menampilkan data ke table => access table
+        function ShowProducts (idx) {
+            console.log("index", idx)
+            let table = document.getElementById("daftar-produk")
+            console.log(table)
+    
+            let tbody = table.getElementsByTagName("tbody")[0]
+            console.log(tbody)
+    
+            let tr = ""
+            for (let i = 0; i < dataProduk.length; i++) {
+                if (idx === i) {
+                    tr += `
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input id="edit-nama" type="text" value="${dataProduk[i].name}">
+                            </td>
+                            <td>
+                                <input id="edit-img" type="text" value="${dataProduk[i].img}">
+                            </td>
+                            <td>
+                                <input id="edit-harga" type="number" value="${dataProduk[i].harga}">
+                            </td>
+                            <td>
+                                <input id="edit-stock" type="number" value="${dataProduk[i].stok}">
+                            </td>
+                            <td>
+                                <button onclick="OnButtonSave(${i})">SAVE</button>
+                                <button onclick="OnButtonCancel()">CANCEL</button>
+                            </td>
+                        </tr>
+                    `
+                } else {
+                    tr += `
+                        <tr>
+                            <td>${i + 1}</td>
+                            <td>${dataProduk[i].name}</td>
+                            <td>
+                                <img src="${dataProduk[i].img}" height="60px">
+                            </td>
+                            <td>${dataProduk[i].harga}</td>
+                            <td>${dataProduk[i].stok}</td>
+                            <td>
+                                <button onclick="OnButtonDelete(${i})">DELETE</button>
+                                <button onclick="OnButtonEdit(${i})">EDIT</button>
+                                <button onclick="OnButtonCart(${i})">Add to Cart</button>
+                            </td>
+                        </tr>
+                    ` 
+                }
+            }
+            tbody.innerHTML = tr
+        }
+        ShowProducts()
+
+        // add new produk saat button add di klik
+        // dataProduk.push(new Produk(dataProduk.length + 1, "Samsung Galaxy Fold 2", "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-z-fold2-5g-2.jpg", 29000000, 2))
+        // console.log(dataProduk)
+        // ShowProducts()
+
+        function OnButtonAdd (e) {
+            console.log("event", e)
+            e.preventDefault()
+            console.log("add button di klik")
+
+            // get input value
+            let form = document.getElementById("produk-baru")
+            console.log(form)
+            console.log(form["nama"].value)
+            
+
+            // check input value => tidak boleh ada value yang kosong
+            // check value dari harga dan stok tidak boleh < 0 atau negatif
+            let nama = form["nama"].value
+            let img = form["img"].value
+            let harga = form["harga"].value
+            let stok = form["stok"].value
+
+            if (nama === "" || img === "" || harga === "" || stok === "") {
+                alert("input tidak boleh kosong")
+            } else {
+                // masukan semua value ke daftar produk dalam bentuk object
+                dataProduk.push(new Produk(
+                    dataProduk.length + 1, 
+                    form["nama"].value, 
+                    form["img"].value, 
+                    parseInt(form["harga"].value), 
+                    parseInt(form["stok"].value)
+                ))
+                console.log(dataProduk)
+    
+                // tampilkan ulang produk
+                ShowProducts()
+    
+                // reset value di form
+                form["nama"].value = ""
+                form["img"].value = ""
+                form["harga"].value = ""
+                form["stok"].value = ""
+            }
+
+        }
+
+        // delete produk
+        // dataProduk.splice(2, 1)
+        // console.log(dataProduk)
+        
+        // ShowProducts()
+        function OnButtonDelete (index) {
+            console.log(`button index ke-${index} di klik`)
+
+            // delete produk
+            dataProduk.splice(index, 1)
+
+            // tampikan ulang produk
+            ShowProducts()
+        }
+
+        // edit produk
+        function OnButtonEdit (index) {
+            console.log(`button edit index ke-${index}`)
+            
+            // tampilkan table
+            ShowProducts(index)
+        }
+
+        // save edited produk
+        function OnButtonSave (index) {
+            console.log("button save di klik")
+
+            // get value dari input data yang mau di edit
+            let editNama = document.getElementById("edit-nama").value
+            let editImg = document.getElementById("edit-img").value
+            let editHarga = parseInt(document.getElementById("edit-harga").value)
+            let editStock = parseInt(document.getElementById("edit-stock").value)
+            console.log(editNama)
+            console.log(editImg)
+            console.log(editHarga)
+            console.log(editStock)
+
+            // edit daftar produk dengan value baru
+            dataProduk[index].name = editNama
+            dataProduk[index].img = editImg
+            dataProduk[index].harga = editHarga
+            dataProduk[index].stok = editStock
+            console.log(dataProduk)
+
+            // tampilkan ulang table produk
+            ShowProducts()
+        }
+
+        // cancel edit
+        function OnButtonCancel () {
+            console.log("button cancel di klik")
+
+            // tampilkan ulang table produk
+            ShowProducts()
+        }
+        let NoCart= 0
+        function OnButtonCart(idex) {
+            let Cart = []
+            Cart.push(dataProduk[idex])
+            console.log(Cart)
+            let table = document.getElementById("cart")
+            let tbody = table.getElementsByTagName("tbody")[0]
+            NoCart++
+            let qty = 1
+            let tr = `
+                <tr>
+                    <td>${NoCart}</td>
+                    <td>${dataProduk[idex].name}</td>
+                    <td> <img src="${dataProduk[idex].img}" width="50px"> </td>
+                    <td>${dataProduk[idex].harga}</td>
+                    <td>${qty}</td>
+                    <td>${dataProduk[idex].harga * qty}</td>
+                    <td><button>BUY</button></td>
+                </tr>
+            `   
+            tbody.innerHTML += tr
+        }
+    </script>
+</html>

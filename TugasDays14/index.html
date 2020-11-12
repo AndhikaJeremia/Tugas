@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TABLE</title>
+        <style>
+            table, tr, td, th {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+            }
+
+            td {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Form Produk Baru</h1>
+        <form id="produk-baru">
+            <input type="text" id="nama" placeholder="nama produk">
+            <input type="text" id="img" placeholder="image">
+            <input type="number" id="harga" placeholder="harga">
+            <input type="number" id="stok" placeholder="stok">
+            <button onclick="OnButtonAdd(event)">ADD</button>
+        </form>
+
+        <h1>Daftar Produk</h1>
+        <table id="daftar-produk">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Image</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h1>User Cart</h1>
+        <table id="cart">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Image</th>
+                    <th>Harga</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <br>
+        <button onclick="CetakReceipt()">Cetak Receipt</button>
+        <br>
+        <p id="receipt">Receipt</p>
+    </body>
+    <script src="/Days14/database.js"></script>
+    <script src="/Days14/index.js"></script>
+</html>

@@ -1,0 +1,13 @@
+1. buat fungsi untuk hitung huruf vocal: => total huruf vokal
+    - countVocal("Purwadhika") // 3
+    - countVocal("javascript") // 2
+2. buat sebuah function untuk menghapus huruf vokal
+    - removeVocal("reactjs") // "rctjs"
+    - removeVocal("hello") // "hll"
+3. buat function untuk alternating case
+    - input : "heLL wOlRd" => output : "HEllo WoLrD"
+4. buat function untuk hitung duplicate character di dalam sebuah string
+    - input : "i love javascript" => output : 2 huruf yg di duplicate "a, v"
+5. market bikin function
+
+terakhir minggu
